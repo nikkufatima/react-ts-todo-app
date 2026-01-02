@@ -2,7 +2,11 @@ import {useState} from 'react'
 export default function TodoInput(props: any){
     const [input, setInput] = useState('');
     const handleClick = () => {
-        props.onAddTodo(input);
+        props.onAddTodo({
+                            id: Date.now(),
+                            text: input,
+                            completed: false,    
+                        });
         setInput("");
 
     } 
@@ -16,7 +20,7 @@ export default function TodoInput(props: any){
                 value={input}
                 onChange={handleChange}
             />
-            <button
+            <button style={{margin: "10px"}}
                 disabled = {input === ''} 
                 onClick={handleClick}
             >
